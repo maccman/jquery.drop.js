@@ -1,0 +1,19 @@
+The HTML5 drag/drop API is rather odd - you need to implement at least
+three event handlers for it to work. This library abstracts it for jQuery.
+
+
+Usage:
+
+    var view = $("#view");
+
+    view.dropArea();
+    view.bind("drop", this.proxy(function(e){      
+      e.stopPropagation();
+      e.preventDefault();
+  
+      var files = e.originalEvent.dataTransfer.files;
+      for ( var i = 0; i < files.length; i++)
+        this.createAsset(files[i]);
+    
+      return false;
+    }));
